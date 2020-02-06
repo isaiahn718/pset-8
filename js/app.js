@@ -25,3 +25,13 @@ function init() {
       squares[index].textContent = mark;    // writes an X or an O on board
     });
   }
+  function takeTurn(e) {
+    let index = squares.findIndex(function(square) {
+      return square === e.target;
+    });
+
+    board[index] = turn;
+    turn = turn === "X" ? "O" : "X";  // alternate turns
+
+    render();
+  }
