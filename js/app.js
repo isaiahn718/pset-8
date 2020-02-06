@@ -7,6 +7,7 @@ let turn;
 const squares = Array.from(document.querySelectorAll("#board div"));
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
+document.getElementById("board").onclick = takeTurn;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
