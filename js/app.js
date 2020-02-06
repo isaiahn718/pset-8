@@ -5,6 +5,7 @@ let board;s
 let turn;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
+const message = document.querySelector("h2");   // grab the subheader
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
@@ -20,11 +21,13 @@ function init() {
   render();
 }
 
-  function render() {
-    board.forEach(function(mark, index) {
-      squares[index].textContent = mark;    // writes an X or an O on board
-    });
-  }
+function render() {
+  board.forEach(function(mark, index) {
+    squares[index].textContent = mark;    // writes an X or an O on board
+  });
+
+  message.textContent = `Turn: ${turn}`;
+}
   function takeTurn(e) {
     let index = squares.findIndex(function(square) {
       return square === e.target;
