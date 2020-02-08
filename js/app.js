@@ -10,15 +10,21 @@ const winningConditions = [
   [2, 4, 6]
 ];
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
-let board;s
+let board;
 let turn;
 let win;
+let x_wins_count = 0
+let o_wins_count = 0
+let switch_turn_count = 0
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
-const message = document.querySelector("h2");   // grab the subheader
+const message = document.querySelector("h2");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
+
 document.getElementById("board").onclick = takeTurn;
+document.getElementById("reset-button").onclick = init;
+document.getElementById("switch").onclick = switch_turn;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
