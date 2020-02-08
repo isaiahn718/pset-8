@@ -27,40 +27,42 @@ document.getElementById("reset-button").onclick = init;
 document.getElementById("switch").onclick = switch_turn;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
-  board = [
-    "", "", "",
-    "", "", "",
-    "", "", ""
-  ];
-
-  turn = "X";
+  board = ["", "", "", "", "", "", "", "", ""];
+  if (switch_turn_count == 0) {
+    turn = "X";
+  }
+  else if (switch_turn_count == 1) {
+    turn = "O"
+  }
   win = null;
 
   render();
 }
-
+function switch_turn() {
+  if (switch_turn_count == 0) {
+    switch_turn_count = 1
+  }
+  else if (switch_turn_count == 1) {
+    switch_turn_count = 0
+  }
+}
 function render() {
   board.forEach(function(mark, index) {
-    squares[index].textContent = mark;    // writes an X or an O on board
+    squares[index].textContent = mark;
   });
-
-  message.textContent = `Turn: ${turn}`;
+  if (win === "X") {
+    x_wins_count = x_wins_count + 1
+  }
+  else if (win === "O") {
+    o_wins_count = o_wins_count + 1
+  }
+  x_wins.innerHTML = x_wins_count
+  o_wins.innerHTML = o_wins_count
+  message.textContent =
+    win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
 }
-function takeTurn(e) {
-  let index = squares.findIndex(function(square) {
-    return square === e.target;
-  });
 
-  board[index] = turn;
-  turn = turn === "X" ? "O" : "X";
-  win = getWinner();
 
-  render();
-}
-  if (board[0] && board[0] === board[1] && board[1] === board[2]) {
-    win = board[0];   // either X or O
-  } else if (/* next winning condition */) {
-    win = board[0];   // either X or O
   }
   function getWinner() {
     let winner = null;
