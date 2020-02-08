@@ -41,3 +41,8 @@ function render() {
 
     render();
   }
+  if (board[0] && board[0] === board[1] && board[1] === board[2]) {
+    win = board[0];   // either X or O
+  } else if (/* next winning condition */) {
+    win = board[0];   // either X or O
+  }
