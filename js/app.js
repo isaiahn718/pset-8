@@ -61,8 +61,20 @@ function render() {
   message.textContent =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
 }
+function takeTurn(e) {
+  if (!win) {
+    let index = squares.findIndex(function(square) {
+      return square === e.target;
+    });
 
-
+    if (board[index] === "") {
+      board[index] = turn;
+      turn = turn === "X" ? "O" : "X";
+      win = getWinner();
+      render();
+    }
+  }
+}
   }
   function getWinner() {
     let winner = null;
