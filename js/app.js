@@ -40,16 +40,17 @@ function render() {
 
   message.textContent = `Turn: ${turn}`;
 }
-  function takeTurn(e) {
-    let index = squares.findIndex(function(square) {
-      return square === e.target;
-    });
+function takeTurn(e) {
+  let index = squares.findIndex(function(square) {
+    return square === e.target;
+  });
 
-    board[index] = turn;
-    turn = turn === "X" ? "O" : "X";  // alternate turns
+  board[index] = turn;
+  turn = turn === "X" ? "O" : "X";
+  win = getWinner();
 
-    render();
-  }
+  render();
+}
   if (board[0] && board[0] === board[1] && board[1] === board[2]) {
     win = board[0];   // either X or O
   } else if (/* next winning condition */) {
